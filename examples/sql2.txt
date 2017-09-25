@@ -1,0 +1,2 @@
+select userBalance.userAddress from userBalances userBalance where freeze = true order by id desc limit 100;
+select count(1) from users limit 100
