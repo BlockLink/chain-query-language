@@ -16,7 +16,7 @@ namespace antlr4 {
   protected:
     /// The data being scanned.
     // UTF-32
-#if defined(_MSC_VER) && _MSC_VER == 1900
+#if defined(_MSC_VER) && _MSC_VER >= 1900
     i32string _data; // Custom type for VS 2015.
 #else
     std::u32string _data;

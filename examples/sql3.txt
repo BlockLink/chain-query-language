@@ -1,4 +1,4 @@
-create table userBalances (freeze bool, userId varchar(255), balance bigint, id bigint, country string); 
+﻿create table userBalances (freeze bool, userId varchar(255), balance bigint, id bigint, country string); 
 create index userBalanceIdKey on userBalances (id desc);
 create unique index userBalanceIdKey on userBalances (id);
 insert into userBalances (freeze, userId, balance, id) values (false, 'abcd', 12345, 1);
@@ -9,7 +9,3 @@ delete from userBalances where freeze=true limit 100;
 delete from userBalances limit 100;
 delete from userBalances where freeze=true order by id asc limit 100;
 show tables;
-jifafjeiafjeaf;
-aaa;
-create table;
-点点滴滴

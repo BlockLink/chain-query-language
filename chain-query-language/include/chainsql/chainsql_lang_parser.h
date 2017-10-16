@@ -27,8 +27,8 @@ namespace chainsql
 		ChainsqlLangParser();
 		virtual ~ChainsqlLangParser();
 
+		tree::ParseTree *parse_string(std::string input);
 		tree::ParseTree *parse(std::istream &stream);
-		tree::ParseTree *parse(std::string input);
 
 		void walk(tree::ParseTree *tree);
 

@@ -56,7 +56,7 @@ namespace xpath {
   class ANTLR4CPP_PUBLIC XPath {
   public:
     static const std::string WILDCARD; // word not operator/separator
-    static const std::string NOT; // word for invert operator
+    static const std::string S_NOT; // word for invert operator
 
     XPath(Parser *parser, const std::string &path);
     virtual ~XPath() {}

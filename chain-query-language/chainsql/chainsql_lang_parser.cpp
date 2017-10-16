@@ -38,7 +38,7 @@ namespace chainsql
 		return parse(_antlr_input_stream.get());
 	}
 
-	tree::ParseTree* ChainsqlLangParser::parse(std::string input)
+	tree::ParseTree* ChainsqlLangParser::parse_string(std::string input)
 	{
 		_antlr_input_stream = std::make_shared<ANTLRInputStream>(input);
 		return parse(_antlr_input_stream.get());

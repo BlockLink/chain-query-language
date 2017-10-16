@@ -36,31 +36,24 @@ namespace chainsql
 	}
 	void chainsqlStructureListener::exitParse(chainsqlParser::ParseContext * ctx)
 	{
-		std::cout << "exitParse" << std::endl;
 	}
 	void chainsqlStructureListener::enterError(chainsqlParser::ErrorContext * ctx)
 	{
-		std::cout << "enterError" << std::endl;
 	}
 	void chainsqlStructureListener::exitError(chainsqlParser::ErrorContext * ctx)
 	{
-		std::cout << "exitError" << std::endl;
 	}
 	void chainsqlStructureListener::enterSql_stmt_list(chainsqlParser::Sql_stmt_listContext * ctx)
 	{
-		std::cout << "enterSql_stmt_list" << std::endl;
 	}
 	void chainsqlStructureListener::exitSql_stmt_list(chainsqlParser::Sql_stmt_listContext * ctx)
 	{
-		std::cout << "exitSql_stmt_list" << std::endl;
 	}
 	void chainsqlStructureListener::enterSql_stmt(chainsqlParser::Sql_stmtContext * ctx)
 	{
-		std::cout << "enterSql_stmt" << std::endl;
 	}
 	void chainsqlStructureListener::exitSql_stmt(chainsqlParser::Sql_stmtContext * ctx)
 	{
-		std::cout << "exitSql_stmt" << std::endl;
 	}
 	void chainsqlStructureListener::enterCreate_table_stmt(chainsqlParser::Create_table_stmtContext * ctx)
 	{

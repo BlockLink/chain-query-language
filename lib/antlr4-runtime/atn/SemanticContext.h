@@ -93,8 +93,8 @@ namespace atn {
     class Predicate;
     class PrecedencePredicate;
     class Operator;
-    class AND;
-    class OR;
+    class S_AND;
+    class S_OR;
 
   private:
     static std::vector<Ref<PrecedencePredicate>> filterPrecedencePredicates(const Set &collection);
@@ -160,11 +160,11 @@ namespace atn {
    * A semantic context which is true whenever none of the contained contexts
    * is false.
    */
-  class ANTLR4CPP_PUBLIC SemanticContext::AND : public SemanticContext::Operator {
+  class ANTLR4CPP_PUBLIC SemanticContext::S_AND : public SemanticContext::Operator {
   public:
     std::vector<Ref<SemanticContext>> opnds;
 
-    AND(Ref<SemanticContext> const& a, Ref<SemanticContext> const& b) ;
+    S_AND(Ref<SemanticContext> const& a, Ref<SemanticContext> const& b) ;
 
     virtual std::vector<Ref<SemanticContext>> getOperands() const override;
     virtual bool operator == (const SemanticContext &other) const override;
@@ -183,11 +183,11 @@ namespace atn {
    * A semantic context which is true whenever at least one of the contained
    * contexts is true.
    */
-  class ANTLR4CPP_PUBLIC SemanticContext::OR : public SemanticContext::Operator {
+  class ANTLR4CPP_PUBLIC SemanticContext::S_OR : public SemanticContext::Operator {
   public:
     std::vector<Ref<SemanticContext>> opnds;
 
-    OR(Ref<SemanticContext> const& a, Ref<SemanticContext> const& b);
+    S_OR(Ref<SemanticContext> const& a, Ref<SemanticContext> const& b);
 
     virtual std::vector<Ref<SemanticContext>> getOperands() const override;
     virtual bool operator == (const SemanticContext &other) const override;
