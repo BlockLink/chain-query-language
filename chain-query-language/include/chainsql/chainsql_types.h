@@ -37,6 +37,12 @@ namespace chainsql
 		virtual ChainsqlStmtType stmt_type() const = 0;
 
 		virtual std::string accept(ChainsqlBaseVisitor *visitor) = 0;
+
+		template <typename T>
+		T* as()
+		{
+			return (T*)this;
+		}
 	};
 
 	class ChainsqlCreateTableStmt : public ChainsqlStmt

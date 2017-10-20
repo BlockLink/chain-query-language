@@ -25,6 +25,12 @@ namespace chainsql
 		virtual std::string visitDeleteStmt(ChainsqlDeleteStmt *stmt);
 		virtual std::string visitSelectStmt(ChainsqlSelectStmt *stmt);
 
+		// 从update语句生成对应要修改的记录的select语句
+		virtual std::string getUpdateStmtAffectSelectStmt(ChainsqlUpdateStmt *stmt);
+
+		// 从delete语句生成对应要修改的记录的select语句
+		virtual std::string getDeleteStmtAffectSelectStmt(ChainsqlDeleteStmt *stmt);
+
 	private:
 		// 把chainsql中的table name转成目标sql的table name
 		std::string wrap_table_name(std::string chainsql_table_name);

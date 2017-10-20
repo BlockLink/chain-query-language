@@ -33,7 +33,7 @@ namespace chainsql
 	{
 		std::stringstream sql_ss;
 		sql_ss << "create table " << wrap_table_name(stmt->table_name()) << " ";
-		sql_ss << "(";
+		sql_ss << "(_id bigint auto_increment,";
 		const auto &column_defs = stmt->column_defs();
 		for (size_t i=0;i<column_defs.size();i++)
 		{
@@ -42,6 +42,7 @@ namespace chainsql
 			const auto &col = column_defs[i];
 			sql_ss << col.column_name << " " << col.column_type;
 		}
+		sql_ss << ",primary key (_id)";
 		sql_ss << ")";
 		auto sql = sql_ss.str();
 		_result_sqls.push_back(sql);
@@ -224,6 +225,60 @@ namespace chainsql
 			}
 		}
 		sql_ss << " limit " << stmt->limit << " offset " << stmt->offset;
+		auto sql = sql_ss.str();
+		_result_sqls.push_back(sql);
+		return sql;
+	}
+
+	std::string ChainsqlToSqlTranslater::getUpdateStmtAffectSelectStmt(ChainsqlUpdateStmt *stmt)
+	{
+		std::stringstream sql_ss;
+		sql_ss << "select * from " << wrap_table_name(stmt->table_name);
+		if (stmt->condition)
+		{
+			sql_ss << " where ";
+			sql_ss << utils::vector_join(stmt->condition->tokens, " ");
+		}
+		if (stmt->orders.size() > 0)
+		{
+			sql_ss << " order by ";
+			const auto &orders = stmt->orders;
+			for (size_t i = 0; i < orders.size(); i++)
+			{
+				if (i > 0)
+					sql_ss << ",";
+				const auto &order = orders[i];
+				sql_ss << order.column_name << " " << (order.ascending ? "asc" : "desc");
+			}
+		}
+		sql_ss << " limit " << stmt->limit;
+		auto sql = sql_ss.str();
+		_result_sqls.push_back(sql);
+		return sql;
+	}
+
+	std::string ChainsqlToSqlTranslater::getDeleteStmtAffectSelectStmt(ChainsqlDeleteStmt *stmt)
+	{
+		std::stringstream sql_ss;
+		sql_ss << "select * from " << wrap_table_name(stmt->table_name);
+		if (stmt->condition)
+		{
+			sql_ss << " where ";
+			sql_ss << utils::vector_join(stmt->condition->tokens, " ");
+		}
+		if (stmt->orders.size() > 0)
+		{
+			sql_ss << " order by ";
+			const auto &orders = stmt->orders;
+			for (size_t i = 0; i < orders.size(); i++)
+			{
+				if (i > 0)
+					sql_ss << ",";
+				const auto &order = orders[i];
+				sql_ss << order.column_name << " " << (order.ascending ? "asc" : "desc");
+			}
+		}
+		sql_ss << " limit " << stmt->limit;
 		auto sql = sql_ss.str();
 		_result_sqls.push_back(sql);
 		return sql;
