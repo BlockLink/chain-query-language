@@ -7,6 +7,9 @@
 #include <chainsql/chainsqlParser.h>
 #include <chainsql/chainsqlBaseListener.h>
 #include <chainsql/chainsql_structure_listener.h>
+#include <chainsql/chainsql_meta_executor.h>
+#include <chainsql/chainsql_rollback_translator.h>
+#include <chainsql/exceptions.h>
 
 namespace chainsql
 {

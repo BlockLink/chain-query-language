@@ -82,7 +82,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\lib\antlr4-runtime;.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\boost_1.55.x64;..\lib\antlr4-runtime;.\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -125,6 +125,8 @@
     <ClCompile Include="chainsql\chainsqlListener.cpp" />
     <ClCompile Include="chainsql\chainsqlParser.cpp" />
     <ClCompile Include="chainsql\chainsql_lang_parser.cpp" />
+    <ClCompile Include="chainsql\chainsql_meta_executor.cpp" />
+    <ClCompile Include="chainsql\chainsql_rollback_translator.cpp" />
     <ClCompile Include="chainsql\chainsql_structure_listener.cpp" />
     <ClCompile Include="chainsql\chainsql_to_sql_translator.cpp" />
     <ClCompile Include="chainsql\chainsql_types.cpp" />
@@ -137,6 +139,8 @@
     <ClInclude Include="include\chainsql\chainsqlListener.h" />
     <ClInclude Include="include\chainsql\chainsqlParser.h" />
     <ClInclude Include="include\chainsql\chainsql_lang_parser.h" />
+    <ClInclude Include="include\chainsql\chainsql_meta_executor.h" />
+    <ClInclude Include="include\chainsql\chainsql_rollback_translator.h" />
     <ClInclude Include="include\chainsql\chainsql_structure_listener.h" />
     <ClInclude Include="include\chainsql\chainsql_to_sql_translator.h" />
     <ClInclude Include="include\chainsql\chainsql_types.h" />

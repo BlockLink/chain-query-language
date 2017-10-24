@@ -91,6 +91,9 @@ int main(int argc, const char* argv[]) {
 		DemoChainsqlVisitor visitor;
 		ChainsqlToSqlTranslater to_sql_translator("demo1_");
 
+		std::vector<SqlChangeInfo> changes;
+		ChainsqlMetaExecutor meta_executor;
+
 		for (const auto &stmt : stmts)
 		{
 			auto stmt_response = stmt->accept(&visitor);
@@ -98,8 +101,54 @@ int main(int argc, const char* argv[]) {
 
 			auto sql = stmt->accept(&to_sql_translator);
 			std::cout << "to sql is: " << sql << std::endl;
+
+			switch (stmt->stmt_type())
+			{
+			case ChainsqlStmtType::CST_CREATE_TABLE:
+				changes.push_back(meta_executor.makeCreateTableStmtChange(stmt->as<ChainsqlCreateTableStmt>()));
+				break;
+			case ChainsqlStmtType::CST_CREATE_INDEX:
+				changes.push_back(meta_executor.makeCreateIndexStmtChange(stmt->as<ChainsqlCreateIndexStmt>()));
+				break;
+			case ChainsqlStmtType::CST_INSERT:
+				changes.push_back(meta_executor.makeInsertStmtChange(stmt->as<ChainsqlInsertStmt>(), 123));
+				break;
+			case ChainsqlStmtType::CST_UPDATE:
+			{
+				std::vector<std::pair<row_id_type, SqlRecordData>> updated_before_records;
+				std::vector<std::string> columns = {"name", "age"};
+				SqlRecordData record;
+				record.column_values.push_back(SqlValue::create_string("hello"));
+				record.column_values.push_back(SqlValue::create_bigint(26));
+				updated_before_records.push_back(std::make_pair(123, record));
+				changes.push_back(meta_executor.makeUpdateStmtChange(stmt->as<ChainsqlUpdateStmt>(), SqlTableColumns(columns), updated_before_records));
+			}
+				break;
+			case ChainsqlStmtType::CST_DELETE:
+			{
+				std::vector<std::pair<row_id_type, SqlRecordData>> deleted_before_records;
+				std::vector<std::string> columns = { "name", "age" };
+				SqlRecordData record;
+				record.column_values.push_back(SqlValue::create_string("hello"));
+				record.column_values.push_back(SqlValue::create_bigint(26));
+				deleted_before_records.push_back(std::make_pair(123, record));
+				changes.push_back(meta_executor.makeDeleteStmtChange(stmt->as<ChainsqlDeleteStmt>(), SqlTableColumns(columns), deleted_before_records));
+			}
+			break;
+			}
 		}
 		// 如果区块链要执行回滚操作，提供2个visitor类，一个正常执行chainsql，一个回滚执行chainsql
+
+		RollbackTranslator rollback_translator("demo1_");
+
+		for (const auto &change : changes)
+		{
+			const auto &rollback_sqls = rollback_translator.generate_rollback_sqls(change);
+			for (const auto &sql : rollback_sqls)
+			{
+				std::cout << "rollback: " << sql << std::endl;
+			}
+		}
 	}
 	catch (ChainsqlException &e)
 	{

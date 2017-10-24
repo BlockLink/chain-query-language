@@ -45,6 +45,12 @@
     <ClCompile Include="chainsql\chainsql_to_sql_translator.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="chainsql\chainsql_rollback_translator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="chainsql\chainsql_meta_executor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\chainsql\chainsql_structure_listener.h">
@@ -81,6 +87,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="include\chainsql\chainsql_to_sql_translator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\chainsql\chainsql_rollback_translator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\chainsql\chainsql_meta_executor.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

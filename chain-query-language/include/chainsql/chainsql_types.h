@@ -203,4 +203,85 @@ namespace chainsql
 		virtual std::string accept(ChainsqlBaseVisitor *visitor);
 	};
 
+	// data types
+	enum SqlColumnTypeEnum
+	{
+		SCT_INT = 0,
+		SCT_BIGINT = 1,
+		SCT_BOOL = 2,
+		SCT_NVARCHAR = 3,
+		SCT_TEXT = 4,
+		SCT_STRING = 5
+	};
+
+	struct SqlValue
+	{
+		int64_t int_value;
+		bool bool_value;
+		std::string string_value;
+		SqlColumnTypeEnum type;
+		bool is_null;
+		inline SqlValue(SqlColumnTypeEnum _type= SqlColumnTypeEnum::SCT_INT)
+			: is_null(false), type(_type)
+		{}
+	public:
+		static SqlValue create_null();
+		static SqlValue create_int(int64_t value);
+		static SqlValue create_bigint(int64_t value);
+		static SqlValue create_string(const std::string &value);
+		static SqlValue create_varchar(const std::string &value);
+		static SqlValue create_text(const std::string &value);
+		static SqlValue create_bool(bool value);
+	};
+
+	typedef uint64_t row_id_type;
+
+	struct SqlResultRow
+	{
+		std::vector<SqlValue> column_values;
+	};
+	struct SqlResultSet
+	{
+		std::vector<std::string> column_names;
+		std::vector<SqlResultRow> rows;
+	};
+
+	struct SqlTableColumns
+	{
+		std::vector<std::string> column_names;
+
+	public:
+		inline SqlTableColumns(const std::vector<std::string> &_column_names)
+			: column_names(_column_names)
+		{
+		}
+		inline SqlTableColumns()
+		{}
+	};
+
+	struct SqlRecordData
+	{
+		std::vector<SqlValue> column_values;
+	};
+
+	// change info when sql execute
+	struct SqlChangeInfo
+	{
+		std::string execute_chainsql; // 执行的chainsql
+		ChainsqlStmtType stmt_type; // chainsql的语句类型
+		std::string table_name; // 影响的表名(非实际)
+		std::string index_name; // 影响的索引名(非实际)
+		row_id_type inserted_id; // 新增的id
+		SqlTableColumns columns;
+		std::vector<std::pair<row_id_type, SqlRecordData>> updated_before_records; // update被修改的记录的 _id 和旧数据记录
+		std::vector<std::pair<row_id_type, SqlRecordData>> deleted_before_records; // delete被删除的记录的 _id 和旧数据记录
+
+		SqlChangeInfo();
+
+		// 检查SqlChangeInfo内容是否完整，格式准确
+		bool validate() const;
+	};
+
+	// TODO: 根据SqlChangeInfo产生回滚需要执行的chainsql列表
+
 }
