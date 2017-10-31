@@ -13,8 +13,9 @@ SQL-like language（chainsql) for blockchain to read/write storage
 # Dependencies
 
 * C++ 11
-* antlr4 (or unzip lib/antlr4/antlr4.7z when build in Windows)
+* https://github.com/BlockLink/link-antlr-cpp (or unzip lib/antlr4/antlr4.7z when build in Windows)
 * Boost 1.55+
+* https://github.com/cryptonomex/fc
 
 
 # Grammar

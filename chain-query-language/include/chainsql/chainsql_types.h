@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <fc/io/enum_type.hpp>
 
 namespace chainsql
 {
@@ -219,7 +220,7 @@ namespace chainsql
 		int64_t int_value;
 		bool bool_value;
 		std::string string_value;
-		SqlColumnTypeEnum type;
+		fc::enum_type<uint8_t, SqlColumnTypeEnum> type;
 		bool is_null;
 		inline SqlValue(SqlColumnTypeEnum _type= SqlColumnTypeEnum::SCT_INT)
 			: is_null(false), type(_type)
@@ -268,7 +269,7 @@ namespace chainsql
 	struct SqlChangeInfo
 	{
 		std::string execute_chainsql; // 执行的chainsql
-		ChainsqlStmtType stmt_type; // chainsql的语句类型
+		fc::enum_type<uint8_t, ChainsqlStmtType> stmt_type; // chainsql的语句类型
 		std::string table_name; // 影响的表名(非实际)
 		std::string index_name; // 影响的索引名(非实际)
 		row_id_type inserted_id; // 新增的id
@@ -281,7 +282,5 @@ namespace chainsql
 		// 检查SqlChangeInfo内容是否完整，格式准确
 		bool validate() const;
 	};
-
-	// TODO: 根据SqlChangeInfo产生回滚需要执行的chainsql列表
 
 }

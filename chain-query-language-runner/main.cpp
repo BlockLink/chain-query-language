@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 #include <sstream>
-#include <antlr4-runtime.h>
+#include <antlr4/antlr4-runtime.h>
 #include <chainsql/chainsql_visitor.h>
 #include <chainsql/chainsql_lang_parser.h>
 #include <chainsql/chainsql_to_sql_translator.h>

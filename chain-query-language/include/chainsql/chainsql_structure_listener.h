@@ -1,7 +1,7 @@
 // 把antlr生成的结构转换成更方便使用的结构
 
 #pragma once
-#include "antlr4-runtime.h"
+#include <antlr4/antlr4-runtime.h>
 #include <chainsql/chainsqlBaseListener.h>
 #include <chainsql/chainsql_types.h>
 #include <chainsql/chainsqlContext.h>

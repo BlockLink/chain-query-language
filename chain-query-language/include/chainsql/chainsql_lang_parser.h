@@ -1,7 +1,7 @@
 #pragma once
 
 #include <sstream>
-#include <antlr4-runtime.h>
+#include <antlr4/antlr4-runtime.h>
 #include <memory>
 #include <chainsql/chainsqlLexer.h>
 #include <chainsql/chainsqlParser.h>
