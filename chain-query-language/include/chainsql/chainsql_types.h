@@ -1,4 +1,4 @@
-// chainsqlµÄ¸÷ÖÖÓï·¨·ÖÎö½á¹¹
+// chainsqlï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï·¨ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹
 
 #pragma once
 
@@ -104,8 +104,8 @@ namespace chainsql
 
 	struct ChainsqlGroupBy
 	{
-		std::vector<ChainsqlExpr> exprs; // group byºó¿ÉÒÔ¸úÒ»¸ö»ò¶à¸ö±í´ïÊ½
-		std::shared_ptr<ChainsqlExpr> having_expr; // group by ºó¿ÉÑ¡¸úÒ»¸öhaving±í´ïÊ½
+		std::vector<ChainsqlExpr> exprs; // group byï¿½ï¿½ï¿½ï¿½Ô¸ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+		std::shared_ptr<ChainsqlExpr> having_expr; // group by ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ò»ï¿½ï¿½havingï¿½ï¿½ï¿½Ê½
 	};
 
 	struct ChainsqlOrderInfo
@@ -128,8 +128,8 @@ namespace chainsql
 		size_t offset;
 		bool distinct;
 		bool all;
-		std::shared_ptr<ChainsqlExpr> condition; // where ºóÃæ¸ú×ÅµÄ±í´ïÊ½
-		std::vector<ChainsqlOrderInfo> orders; // order byºóÃæ¸ú×ÅµÄÅÅÐò£¬ column_name => isAscending
+		std::shared_ptr<ChainsqlExpr> condition; // where ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅµÄ±ï¿½ï¿½Ê½
+		std::vector<ChainsqlOrderInfo> orders; // order byï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½ column_name => isAscending
 		std::shared_ptr<ChainsqlGroupBy> group_by;
 	public:
 		ChainsqlSelectStmt();
@@ -145,7 +145,7 @@ namespace chainsql
 	private:
 		std::string _table_name;
 		std::vector<std::string> _column_names;
-		std::vector<ChainsqlExpr> _column_values; // insertÓï¾äµÄÃ¿¸öÖµ¿ÉÄÜÓÉ¶à¸ötoken×é³É
+		std::vector<ChainsqlExpr> _column_values; // insertï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½É¶ï¿½ï¿½tokenï¿½ï¿½ï¿½
 	public:
 		inline virtual ChainsqlStmtType stmt_type() const
 		{
@@ -164,10 +164,10 @@ namespace chainsql
 	{
 	public:
 		std::string table_name;
-		std::vector<std::pair<std::string, ChainsqlExpr>> set_columns; // ÒªÐÞ¸ÄµÄÁÐ, Ã¿Ò»ÏîÊÇ column_name => value expr
-		std::shared_ptr<ChainsqlExpr> condition; // where ºóÃæ¸ú×ÅµÄ±í´ïÊ½, TODO: ¸Ä³É¸ü¼Ó½á¹¹»¯µÄÊý¾ÝÀàÐÍ
-		std::vector<ChainsqlOrderInfo> orders; // order byºóÃæ¸ú×ÅµÄÅÅÐò
-		size_t limit; // limit ºóÃæ¸ú×ÅµÄÊý×Ö
+		std::vector<std::pair<std::string, ChainsqlExpr>> set_columns; // Òªï¿½Þ¸Äµï¿½ï¿½ï¿½, Ã¿Ò»ï¿½ï¿½ï¿½ï¿½ column_name => value expr
+		std::shared_ptr<ChainsqlExpr> condition; // where ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅµÄ±ï¿½ï¿½Ê½, TODO: ï¿½Ä³É¸ï¿½ï¿½Ó½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		std::vector<ChainsqlOrderInfo> orders; // order byï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½
+		size_t limit; // limit ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½
 	public:
 		inline ChainsqlUpdateStmt() { limit = 0; }
 		inline virtual ChainsqlStmtType stmt_type() const
@@ -181,9 +181,9 @@ namespace chainsql
 	{
 	public:
 		std::string table_name;
-		std::shared_ptr<ChainsqlExpr> condition; // where ºóÃæ¸ú×ÅµÄ±í´ïÊ½, TODO: ¸Ä³É¸ü¼Ó½á¹¹»¯µÄÊý¾ÝÀàÐÍ
-		std::vector<ChainsqlOrderInfo> orders; // order byºóÃæ¸ú×ÅµÄÅÅÐò
-		size_t limit; // limit ºóÃæ¸ú×ÅµÄÊý×Ö
+		std::shared_ptr<ChainsqlExpr> condition; // where ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅµÄ±ï¿½ï¿½Ê½, TODO: ï¿½Ä³É¸ï¿½ï¿½Ó½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		std::vector<ChainsqlOrderInfo> orders; // order byï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½
+		size_t limit; // limit ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½ï¿½ï¿½ï¿½ï¿½
 
 	public:
 		inline ChainsqlDeleteStmt() { limit = 0; }
@@ -268,18 +268,18 @@ namespace chainsql
 	// change info when sql execute
 	struct SqlChangeInfo
 	{
-		std::string execute_chainsql; // Ö´ÐÐµÄchainsql
-		fc::enum_type<uint8_t, ChainsqlStmtType> stmt_type; // chainsqlµÄÓï¾äÀàÐÍ
-		std::string table_name; // Ó°ÏìµÄ±íÃû(·ÇÊµ¼Ê)
-		std::string index_name; // Ó°ÏìµÄË÷ÒýÃû(·ÇÊµ¼Ê)
-		row_id_type inserted_id; // ÐÂÔöµÄid
+		std::string execute_chainsql; // Ö´ï¿½Ðµï¿½chainsql
+		fc::enum_type<uint8_t, ChainsqlStmtType> stmt_type; // chainsqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		std::string table_name; // Ó°ï¿½ï¿½Ä±ï¿½ï¿½ï¿½(ï¿½ï¿½Êµï¿½ï¿½)
+		std::string index_name; // Ó°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Êµï¿½ï¿½)
+		row_id_type inserted_id; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½id
 		SqlTableColumns columns;
-		std::vector<std::pair<row_id_type, SqlRecordData>> updated_before_records; // update±»ÐÞ¸ÄµÄ¼ÇÂ¼µÄ _id ºÍ¾ÉÊý¾Ý¼ÇÂ¼
-		std::vector<std::pair<row_id_type, SqlRecordData>> deleted_before_records; // delete±»É¾³ýµÄ¼ÇÂ¼µÄ _id ºÍ¾ÉÊý¾Ý¼ÇÂ¼
+		std::vector<std::pair<row_id_type, SqlRecordData>> updated_before_records; // updateï¿½ï¿½ï¿½Þ¸ÄµÄ¼ï¿½Â¼ï¿½ï¿½ _id ï¿½Í¾ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½Â¼
+		std::vector<std::pair<row_id_type, SqlRecordData>> deleted_before_records; // deleteï¿½ï¿½É¾ï¿½ï¿½ï¿½Ä¼ï¿½Â¼ï¿½ï¿½ _id ï¿½Í¾ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½Â¼
 
 		SqlChangeInfo();
 
-		// ¼ì²éSqlChangeInfoÄÚÈÝÊÇ·ñÍêÕû£¬¸ñÊ½×¼È·
+		// ï¿½ï¿½ï¿½SqlChangeInfoï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½×¼È·
 		bool validate() const;
 	};
 

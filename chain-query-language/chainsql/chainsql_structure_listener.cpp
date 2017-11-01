@@ -2,20 +2,21 @@
 #include <iostream>
 #include <chainsql/exceptions.h>
 #include <chainsql/utils.h>
+#include <memory>
 
 namespace chainsql
 {
-	// chainsqlÖĞexpr±í´ïÊ½ÔÊĞíÊ¹ÓÃµÄº¯ÊıÃû³ÆÁĞ±í
+	// chainsqlï¿½ï¿½exprï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ÃµÄºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
 	static std::vector<std::string> chainsql_allowed_expr_functions = {
 		"avg", "count", "sum", "min", "max", "trim", "upper", "lower", "abs", "substr", "length"
 	};
 
-	// chainsqlÖĞ×Ö¶ÎÀàĞÍÔÊĞíÊ¹ÓÃµÄÀàĞÍÃû³Æ°×Ãûµ¥
+	// chainsqlï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ï¿½ï¿½ï¿½
 	static std::vector<std::string> chainsql_allowed_column_types = {
 		"int", "bigint", "varchar", "text", "bool", "string"
 	};
 
-	// chainsqlÖĞ½ûÖ¹Ê¹ÓÃµÄ×Ö¶ÎÃû³ÆÁĞ±í
+	// chainsqlï¿½Ğ½ï¿½Ö¹Ê¹ï¿½Ãµï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½
 	static std::vector<std::string> chainsql_disabled_column_names = {
 		"_id"
 	};
@@ -311,7 +312,7 @@ namespace chainsql
 		iter_index++;
 		if (iter_index < children.size() && utils::string_to_lower(children[iter_index]->getText()) == "from")
 		{
-			// from×Ó¾ä
+			// fromï¿½Ó¾ï¿½
 			iter_index++;
 			while (iter_index < children.size())
 			{
@@ -579,7 +580,7 @@ namespace chainsql
 						auto func_name = tokens[i - 1];
 						if (std::find(chainsql_allowed_expr_functions.begin(), chainsql_allowed_expr_functions.end(), utils::string_to_lower(func_name))== chainsql_allowed_expr_functions.end())
 						{
-							// chainsqlº¯ÊıÃû²»ÔÚ°×Ãûµ¥ÖĞ
+							// chainsqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 							throw ChainsqlException(std::string("not allowed chainsql function name ") + func_name);
 						}
 					}
@@ -599,7 +600,7 @@ namespace chainsql
 		auto base_type_name = tokens[0];
 		if (std::find(chainsql_allowed_column_types.begin(), chainsql_allowed_column_types.end(), utils::string_to_lower(base_type_name)) == chainsql_allowed_column_types.end())
 		{
-			// chainsql ×Ö¶ÎÀàĞÍÃû³Æ²»ÔÚ°×Ãûµ¥ÖĞ
+			// chainsql ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ²ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			throw ChainsqlException(std::string("not allowed chainsql column type name ") + utils::vector_join(tokens, ","));
 		}
 	}
@@ -615,7 +616,7 @@ namespace chainsql
 		auto column_name = tokens[0];
 		if (std::find(chainsql_disabled_column_names.begin(), chainsql_disabled_column_names.end(), utils::string_to_lower(column_name)) != chainsql_disabled_column_names.end())
 		{
-			// chainsql×Ö¶ÎÃû³ÆÔÚºÚÃûµ¥ÖĞ
+			// chainsqlï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			throw ChainsqlException(std::string("not allowed chainsql column name ") + column_name);
 		}
 	}

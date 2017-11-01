@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 #include <sstream>
-#include <antlr4/antlr4-runtime.h>
+#include <antlr4-runtime.h>
 #include <chainsql/chainsql_visitor.h>
 #include <chainsql/chainsql_lang_parser.h>
 #include <chainsql/chainsql_to_sql_translator.h>
@@ -69,7 +69,13 @@ public:
 
 int main(int argc, const char* argv[]) {
 	std::ifstream stream;
-	stream.open(argv[1]);
+	if(argc<2)
+	{
+		std::cerr << "need parse chainsql filepath as argument" << std::endl;
+		return 1;
+	}
+	std::string filename(argv[1]);
+	stream.open(filename);
 
 	try
 	{

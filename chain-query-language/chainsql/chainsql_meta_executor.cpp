@@ -40,7 +40,7 @@ namespace chainsql
 		change_info.inserted_id = inserted_id;
 		return change_info;
 	}
-	SqlChangeInfo ChainsqlMetaExecutor::makeUpdateStmtChange(ChainsqlUpdateStmt *stmt, SqlTableColumns &columns, std::vector<std::pair<row_id_type, SqlRecordData>> &update_before_rows)
+	SqlChangeInfo ChainsqlMetaExecutor::makeUpdateStmtChange(ChainsqlUpdateStmt *stmt, const SqlTableColumns &columns, const std::vector<std::pair<row_id_type, SqlRecordData>> &update_before_rows)
 	{
 		SqlChangeInfo change_info;
 		change_info.stmt_type = stmt->stmt_type();
@@ -49,7 +49,7 @@ namespace chainsql
 		change_info.updated_before_records = update_before_rows;
 		return change_info;
 	}
-	SqlChangeInfo ChainsqlMetaExecutor::makeDeleteStmtChange(ChainsqlDeleteStmt *stmt, SqlTableColumns &columns, std::vector<std::pair<row_id_type, SqlRecordData>> &delete_before_rows)
+	SqlChangeInfo ChainsqlMetaExecutor::makeDeleteStmtChange(ChainsqlDeleteStmt *stmt, const SqlTableColumns &columns, const std::vector<std::pair<row_id_type, SqlRecordData>> &delete_before_rows)
 	{
 		SqlChangeInfo change_info;
 		change_info.stmt_type = stmt->stmt_type();

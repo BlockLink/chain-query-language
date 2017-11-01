@@ -1,7 +1,7 @@
-// 把antlr生成的结构转换成更方便使用的结构
+// 锟斤拷antlr锟斤拷锟缴的结构转锟斤拷锟缴革拷锟斤拷锟斤拷使锟矫的结构
 
 #pragma once
-#include <antlr4/antlr4-runtime.h>
+#include <antlr4-runtime.h>
 #include <chainsql/chainsqlBaseListener.h>
 #include <chainsql/chainsql_types.h>
 #include <chainsql/chainsqlContext.h>
@@ -22,8 +22,8 @@ namespace chainsql
 
 		ChainsqlContext _chainsql_ctx;
 
-		std::vector<ChainsqlColumnDef> _tmp_column_defs; // 临时的column_def，用来在上级数据结构中使用
-		ChainsqlSelectStmt _tmp_select_info; // 临时的select语句的部分结构,用来在上级数据结构中使用
+		std::vector<ChainsqlColumnDef> _tmp_column_defs; // 锟斤拷时锟斤拷column_def锟斤拷锟斤拷锟斤拷锟斤拷锟较硷拷锟斤拷锟捷结构锟斤拷使锟斤拷
+		ChainsqlSelectStmt _tmp_select_info; // 锟斤拷时锟斤拷select锟斤拷锟侥诧拷锟街结构,锟斤拷锟斤拷锟斤拷锟较硷拷锟斤拷锟捷结构锟斤拷使锟斤拷
 
 
 	public:

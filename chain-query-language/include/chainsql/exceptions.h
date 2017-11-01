@@ -23,7 +23,7 @@ namespace chainsql
 		{
 			_error_msg = msg;
 		}
-		inline ChainsqlException(std::string &msg)
+		inline ChainsqlException(const std::string &msg)
 		{
 			_error_msg = msg;
 		}
