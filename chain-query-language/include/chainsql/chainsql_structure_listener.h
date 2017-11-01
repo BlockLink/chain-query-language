@@ -1,4 +1,4 @@
-// ��antlr���ɵĽṹת���ɸ�����ʹ�õĽṹ
+// parse antlr4 syntax tree to chainsql structures
 
 #pragma once
 #include <antlr4-runtime.h>
@@ -22,8 +22,8 @@ namespace chainsql
 
 		ChainsqlContext _chainsql_ctx;
 
-		std::vector<ChainsqlColumnDef> _tmp_column_defs; // ��ʱ��column_def���������ϼ����ݽṹ��ʹ��
-		ChainsqlSelectStmt _tmp_select_info; // ��ʱ��select���Ĳ��ֽṹ,�������ϼ����ݽṹ��ʹ��
+		std::vector<ChainsqlColumnDef> _tmp_column_defs; // temporary column_defs to use
+		ChainsqlSelectStmt _tmp_select_info; // temporary select stmt data info
 
 
 	public:
